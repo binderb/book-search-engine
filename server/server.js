@@ -6,13 +6,15 @@ const routes = require('./routes');
 const { ApolloServer } = require('apollo-server-express');
 // Import the two parts of the GraphQL schema.
 const { typeDefs, resolvers } = require('./schemas');
+const { authMiddleware } = require('./utils/auth');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 // Initialize ApolloServer
 const server = new ApolloServer({
   typeDefs,
-  resolvers
+  resolvers,
+  context: authMiddleware
 });
 
 app.use(express.urlencoded({ extended: true }));
