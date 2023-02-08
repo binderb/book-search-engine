@@ -10,6 +10,7 @@ Refactoring exercise wherein a simple search engine's RESTful API was replaced w
   - Addition of an `ApolloProvider` in the main app file to enable connection from all app components to the Apollo Server instance on the back end.
   - Creation of client-side definitions for `queries` and `mutations` written in GraphQL.
   - Use of `useQuery` and `useMutation` hooks to enable CRUD interactions with the database.
+  - Use and proper updating of Apollo's in-memory cache so that page reloads are not necessary after database updates.
 
 ![A screenshot shows an example of the search engine app in use.](./images/readme_screenshot.png)
 
