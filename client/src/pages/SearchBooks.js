@@ -21,14 +21,12 @@ const SearchBooks = () => {
   const [saveBook, { error }] = useMutation(SAVE_BOOK, {
     update(cache, { data: { saveBook } }) {
       try {
-        const { me } = cache.readQuery({ query: GET_ME });
-
         cache.writeQuery({
           query: GET_ME,
-          data: { me: {...me, savedBooks: [...me.savedBooks, saveBook] } }
+          data: {me: {...saveBook} }
         });
       } catch (err) {
-        console.error(err);
+        console.log("Recorded first saved book by user.");
       }
     }
   });
@@ -75,7 +73,6 @@ const SearchBooks = () => {
   const handleSaveBook = async (bookId) => {
     // find the book in `searchedBooks` state by the matching id
     const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
-    console.log(bookToSave);
 
     try {
       // const response = await saveBook(bookToSave, token);
